@@ -1,0 +1,74 @@
+﻿@model VmLayout
+
+    <section id="footer">
+        <div class="container mt-5">
+            <div class="row">
+                <!--
+                <div class="col-lg-4 logo ml-4">
+                  <a class="navbar-brand " href="#"><img class="img-fluid" src="img/Безымянный.png"  style="width: 205px;" alt=""></a>
+
+                </div> -->
+                <div class="col-lg-4 menus">
+                    <div class=" offset-lg-1">
+                        <div class="widget widget_menus">
+                            <h3>Impotant Links</h3>
+                            <hr>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Courses</a></li>
+                                <li><a href="#">Admission Process</a></li>
+                                <li><a href="#">Alumni</a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="#">Book Store</a></li>
+                                <li><a href="#">Tution Free</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div><!--/.widget-->
+                    </div>
+                </div>
+
+                <div class="col-lg-4 social">
+                    <h4 class="">
+                        SOSİAL ŞƏBƏKƏLƏRDƏ
+                    </h4>
+                    <hr>
+                    @foreach (var item in Model.Socials)
+                    {
+                        <a href="@item.Link"><i class="@item.Icon"></i></a>
+
+                    }
+
+                </div>
+
+                <div class="col-lg-4 contact">
+                    <h3>
+                        Bizimlə Əlaqə:
+                    </h3>
+                    <hr>
+                    <div class="location">
+                        <p class="mt-2">
+                          @Model.settings.Adress<i class="fas fa-map-marker-alt"></i>
+                        </p>
+                        <p class="mt-2">
+                           @Model.settings.Phone <i class="fas fa-phone"> </i>
+                        </p>
+                        <p class="mt-2">
+                            @Model.settings.Email <i class="fas fa-envelope"></i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="text-center">
+                        Copyright ⓒ 2022 Universiteti. Bütün Hüquqlar qorunur.
+                    </p>
+                </div>
+            </div>
+    </section>
+
+
+

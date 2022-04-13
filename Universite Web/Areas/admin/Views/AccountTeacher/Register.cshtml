@@ -1,0 +1,156 @@
+﻿@model VmTeacherRegister
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<h4>RegisterTeacher</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-area="admin" asp-action="Register" asp-controller="AccountTeacher" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="@Model.ImageFile" class="form-label">Image</label>
+                <input class="form-control" type="file" asp-for="@Model.ImageFile">
+                <span asp-validation-for="@Model.ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Email" class="control-label">Email</label>
+                <input asp-for="@Model.Email" class="form-control" />
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Password" class="control-label"></label>
+                <input asp-for="@Model.Password" class="form-control" />
+                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.RepaetPassword" class="control-label"></label>
+                <input asp-for="@Model.RepaetPassword" class="form-control" />
+                <span asp-validation-for="@Model.RepaetPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Adı</label>
+                <input asp-for="@Model.Name" class="form-control" />
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Soyadı</label>
+                <input asp-for="@Model.Surname" class="form-control" />
+                <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Atasının adı</label>
+                <input asp-for="@Model.AtaAdi" class="form-control" />
+                <span asp-validation-for="@Model.AtaAdi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Şəxsiyyət vəsiqəsinin seriya və nömrəsi</label>
+                <input asp-for="@Model.PassportNumber" class="form-control" />
+                <span asp-validation-for="@Model.PassportNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Cinsi</label>
+                <select asp-for="@Model.Gender" class="form-control">
+                    <option value="kisi">Kisi</option>
+                    <option value="qadin">Qadin</option>
+                </select>
+                <span asp-validation-for="@Model.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Adress</label>
+                <input asp-for="@Model.Adress" class="form-control" />
+                <span asp-validation-for="@Model.Adress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Telefon</label>
+                <input type="tel" asp-for="@Model.Phone" class="form-control" />
+                <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Doğum tarixi</label>
+                <input type="date" asp-for="@Model.DateOfBirth" class="form-control" />
+                <span asp-validation-for="@Model.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class=" form-group">
+                <label class="control-label">Fakulte</label>
+                <select asp-for="@Model.FacultyId" class="form-control" id="facultyId" asp-items="@(new SelectList(@ViewBag.FacultyList,"Id","Name"))"></select>
+            </div>
+            <div class=" form-group">
+                <label class="control-label">Ixtisas</label>
+                <select asp-for="@Model.SpecialtyId" class="form-control" id="specialtyId"></select>
+            </div>
+            @*<div class="form-group">
+                <label class="control-label">Qrup</label>
+                <select asp-for="@Model.GroupId" id="groupId" class="form-control"></select>
+            </div>*@
+            <div class="form-group">
+                <label class="control-label">Qrup</label>
+                <select asp-for="@Model.SubjectId" id="subjectId"   class="form-control"></select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetSpecialty();
+    })
+    $("#facultyId").change(function () {
+        GetSpecialty();
+    });
+    var GetSpecialty = function () {
+         $.ajax({
+            url: '@Url.Action("GetSpecialty", "AccountUser")',
+            type: 'GET',
+            data: {
+                facultyId: $('#facultyId').val(),
+            },
+            success: function (data) {
+                $('#specialtyId').find('option').remove()
+                $(data).each(
+                    function (index, item) {
+                        $('#specialtyId').append('<option value="' + item.id + '">' + item.name + '</option>')
+                        console.log(item)
+                    });
+            },
+            error: function () {
+            }
+           });
+    }
+
+     $(document).ready(function () {
+         GetSubject();
+    })
+    $("#specialtyId").change(function () {
+        GetSubject();
+    });
+    var GetSubject = function () {
+         $.ajax({
+            url: '@Url.Action("GetSubject", "AccountTeacher")',
+            type: 'GET',
+            data: {
+                specialtyId: $('#specialtyId').val(),
+            },
+            success: function (data) {
+                $('#subjectId').find('option').remove()
+                $(data).each(
+                    function (index, item) {
+                        $('#subjectId').append('<option value="' + item.id + '">' + item.name + '</option>')
+                        console.log(item)
+                    });
+            },
+            error: function () {
+            }
+           });
+    }
+</script>

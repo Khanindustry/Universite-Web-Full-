@@ -1,0 +1,57 @@
+﻿@model List<CustomUser>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="teacher">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 title">
+                <h3>
+                    Muellimler
+                </h3>
+                <p>
+
+                </p>
+                <div class="dot1">
+                </div>
+                <div class="dot1">
+                </div>
+                <div class="dot1">
+                </div>
+            </div>
+            @{ int q = 0;
+                @foreach (var item in Model)
+                {
+                    if (item.IsAdmin == false)
+                    {
+                        if (item.IsStudent == false)
+                        {
+
+                            if (q < 8)
+                            {
+                                <div class="col-md-4 col-lg-3 teacher">
+                                    <div class="card" style="border: none;">
+                                        <div class="img ">
+                                            <img class="card-img-top" src="~/Uploadss/@item.Image" alt="Card image cap">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">@item.Name  @item.Surname</h5>
+                                            <p class="card-text text-center">Teacher</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                q++;
+                            }
+                           
+                        }
+
+                    }
+
+                }
+            }
+
+
+        </div>
+    </div>
+</section>

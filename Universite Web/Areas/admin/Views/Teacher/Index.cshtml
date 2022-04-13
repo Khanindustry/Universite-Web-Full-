@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Universite_Web.Models.CustomUser>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Index</h1>
+
+<p>
+    <a class="nav-link" asp-area="admin" asp-controller="AccountTeacher" asp-action="Register">Teacher Register</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (item.IsAdmin == false)
+                {
+                    if (item.IsStudent == false)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Surname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            <a asp-action="ResetPassword" asp-route-id="@item.Id">ResetPassword</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    }
+                }
+
+
+            </tr>
+        }
+    </tbody>
+</table>

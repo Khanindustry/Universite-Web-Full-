@@ -1,0 +1,65 @@
+﻿@inject IHttpContextAccessor _httpContext
+@inject UserManager<IdentityUser> _userManager
+@inject SignInManager<IdentityUser> _signInManager
+@model VmLayout
+ 
+<div class="footer2">
+    <div class="container">
+        <div class="row">
+            <div class="row">
+                <div class="col-lg-3">
+                    <p><i class="far fa-envelope"></i>@Model.settings.Email</p>
+                </div>
+                @*<div class="col-lg-5">
+                    <p><i class="fas fa-map-marker-alt"></i> @Model.settings.Adress</p>
+                </div>*@
+                <div class="col-lg-2">
+                    <p><i class="fas fa-phone fa-rotate-90"></i>@Model.settings.Phone</p>
+                </div>
+                <div class="col-lg-3 text-center social">
+                    @foreach (var item in Model.Socials)
+                    {
+                        <a href="@item.Link"><i class="@item.Icon"></i></a>
+
+                    }
+
+                </div>
+                <div class="col-lg-4 text-right mt-2">
+                    @if (_signInManager.IsSignedIn(User))
+                    {
+                    <div class="d-flex">
+                        <a class=" me-3 " style="text-decoration: none; text-transform: uppercase; color: black">@_userManager.GetUserName(User)</a>
+
+                        <a class=" " style="text-decoration: none; text-transform: uppercase; color: black" asp-area="Universite_Web" asp-controller="userlogin" asp-action="Logout">Logout</a>
+
+                    </div>
+                      
+                    }
+                    else
+                    {
+                <div class="d-flex">
+                    <a class=" me-3" style="text-decoration: none; text-transform: uppercase; color: black" data-bs-toggle="modal" data-bs-target="#myModal" href="" @*asp-controller="AccountUser" asp-action="login"*@>
+                        Telebe Üçün  Giriş
+                    </a>
+                    <a class="" style="text-decoration:none;text-transform:uppercase;color:black" data-bs-toggle="modal" data-bs-target="#tModal" href="" @*asp-controller="AccountUser" asp-action="login"*@>
+                        Müellim Üçün  Giriş
+                    </a>
+                </div>
+                        
+                    }
+
+
+                </div>
+            </div>
+           
+
+        </div>
+    </div>
+</div>
+
+ 
+
+<nav class="navbar navbar-expand-lg navbar-light  ">
+    <div class="container ">
+        <a class="navbar-brand " href="#"><img class="img-fluid" src="~/UploadsSettings/@Model.settings.Logo" alt=""></a>
+ 

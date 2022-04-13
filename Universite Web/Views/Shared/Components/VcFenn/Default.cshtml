@@ -1,0 +1,7 @@
+﻿@model List<Subject>
+
+@foreach (var item in Model)
+{
+    <a class="nav-link"   @*asp-area="Universite_Web" asp-controller="TeacherLogin" asp-action="Subject" asp-route-id="@item.Id"*@ >@item.Name [@item.Group.Name]</a>
+     
+}

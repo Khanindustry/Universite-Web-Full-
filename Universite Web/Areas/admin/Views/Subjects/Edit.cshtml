@@ -1,0 +1,101 @@
+﻿@model Universite_Web.Models.Subject
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Subject</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class=" form-group">
+                <label class="control-label">Fakulte</label>
+                <select asp-for="FacultyId" class="form-control" id="facultyId"
+                        asp-items="@(new SelectList(@ViewBag.FacultyList,"Id","Name"))"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Specialty" class="control-label"></label>
+                <select asp-for="SpecialtyId" id="specialtyId" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Group" class="control-label"></label>
+                <select asp-for="GroupId" id="groupId" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetSpecialty();
+    })
+    $("#facultyId").change(function () {
+        GetSpecialty();
+    });
+    var GetSpecialty = function () {
+         $.ajax({
+            url: '@Url.Action("GetSpecialty", "Subjects")',
+            type: 'GET',
+            data: {
+                facultyId: $('#facultyId').val(),
+            },
+            success: function (data) {
+                $('#specialtyId').find('option').remove()
+                $(data).each(
+                    function (index, item) {
+                        $('#specialtyId').append('<option value="' + item.id + '">' + item.name + '</option>')
+                        console.log(item)
+                    });
+            },
+            error: function () {
+            }
+           });
+    }
+
+     $(document).ready(function () {
+         GetGroup();
+    })
+    $("#specialtyId").change(function () {
+        GetGroup();
+    });
+    var GetGroup = function () {
+         $.ajax({
+            url: '@Url.Action("GetGroup", "Subjects")',
+            type: 'GET',
+            data: {
+                specialtyId: $('#specialtyId').val(),
+            },
+            success: function (data) {
+                $('#groupId').find('option').remove()
+                $(data).each(
+                    function (index, item) {
+                        $('#groupId').append('<option value="' + item.id + '">' + item.name + '</option>')
+                        console.log(item)
+                    });
+            },
+            error: function () {
+            }
+           });
+    }
+</script>

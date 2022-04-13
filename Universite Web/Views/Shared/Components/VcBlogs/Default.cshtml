@@ -1,0 +1,26 @@
+﻿@model List<Blog>
+
+<div class="col-lg-4">
+    <div class="blogs overflow-auto " style="height:800px">
+        <div class="title">
+            Xəbərlər
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="cardd ">
+                <img src="~/UploadsBlog/@item.Image" class="card-img-top" alt="...">
+                <h5 class="card-title ">@item.Title</h5>
+                <p class="card-text">
+                    @item.Content
+                </p>
+                <div class="date">
+                    @item.Date
+                </div>
+                <div class="link">
+                    <a asp-action="BlogDetails" asp-controller="blog" asp-route-id="@item.Id">Etrafli</a>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>

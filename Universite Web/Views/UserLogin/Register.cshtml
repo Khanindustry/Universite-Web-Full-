@@ -1,0 +1,109 @@
+﻿@model VmStudentRegister
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Register</h1>
+
+<h4>RegisterSTUDENT</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-area="admin" asp-action="Register" asp-controller="AccountUser" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="@Model.Email" class="control-label">Email</label>
+                <input asp-for="@Model.Email" class="form-control" />
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Password" class="control-label"></label>
+                <input asp-for="@Model.Password" class="form-control" />
+                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.RepaetPassword" class="control-label"></label>
+                <input asp-for="@Model.RepaetPassword" class="form-control" />
+                <span asp-validation-for="@Model.RepaetPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Adı</label>
+                <input asp-for="@Model.Name" class="form-control" />
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Soyadı</label>
+                <input asp-for="@Model.Surname" class="form-control" />
+                <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Atasının adı</label>
+                <input asp-for="@Model.AtaAdi" class="form-control" />
+                <span asp-validation-for="@Model.AtaAdi" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Cinsi</label>
+                <select asp-for="@Model.Gender" class="form-control">
+                    <option value="kisi">Kisi</option>
+                    <option value="qadin">Qadin</option>
+                </select>
+                <span asp-validation-for="@Model.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Adress</label>
+                <input asp-for="@Model.Adress" class="form-control" />
+                <span asp-validation-for="@Model.Adress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Telefon</label>
+                <input type="tel" asp-for="@Model.Phone" class="form-control" />
+                <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Təhsil növü</label>
+                <select asp-for="@Model.Money" class="form-control">
+                    <option value="free">Ödənişli</option>
+                    <option value="Paid">Dövlət Hesabına</option>
+                </select>
+                <span asp-validation-for="@Model.Money" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Doğum tarixi</label>
+                <input type="date" asp-for="@Model.DateOfBirth" class="form-control" />
+                <span asp-validation-for="@Model.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Qebul olma tarixi</label>
+                <input type="date" asp-for="@Model.FormEducation" class="form-control" />
+                <span asp-validation-for="@Model.FormEducation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Bitirdiyi tarix</label>
+                <input type="date" asp-for="@Model.AdmissionDate" class="form-control" />
+                <span asp-validation-for="@Model.AdmissionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Fakulte</label>
+                <select class="form-control" asp-for="@Model.FacultyId" asp-items="ViewBag.FacultyId"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Ixtisas</label>
+                <select class="form-control" asp-for="@Model.SpecialtyId" asp-items="ViewBag.SpecialtyId"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Bolme</label>
+                <select class="form-control" asp-for="@Model.GroupId" asp-items="ViewBag.GroupId"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Bolme</label>
+                <select class="form-control" asp-for="@Model.EducationSectionId" asp-items="ViewBag.EducationSectionId"></select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

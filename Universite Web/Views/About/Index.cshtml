@@ -1,0 +1,66 @@
+﻿@model VmHome   
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="about">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12 title">
+                <h3>
+                    Haqqimizda
+                </h3>
+                <p>
+                   
+                </p>
+                <div class="dot1">
+                </div>
+                <div class="dot1">
+                </div>
+                <div class="dot1">
+                </div>
+            </div>
+
+            <div class="col-lg-6 content">
+                <h2>
+                    @Model.About.Title
+
+                </h2>
+                <p>
+                    @Model.About.Content
+
+                </p>
+                @*<a href="" class="btn mb-5">daha cox </a>*@
+            </div>
+            <div class="col-lg-6 img">
+                <img src="~/UploadsAbout/@Model.About.Image" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<section id="total">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Totals)
+            {
+                <div class="col-md-4">
+                    <div class="borderr">
+                        @*<img src="img/about/fun1.png" alt="">*@
+                        <i class="@item.Icon"></i>
+                        <h4>
+                            <div class="timer" data-from="0" data-to="@item.Numeral" data-speed="5000" data-refresh-interval="50"></div>+
+
+                        </h4>
+                        <h3>
+                            @item.Name
+                        </h3>
+                    </div>
+                </div>
+                            }
+           
+        </div>
+    </div>
+
+</section>
+

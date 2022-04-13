@@ -1,0 +1,17 @@
+﻿@model Users
+
+
+@foreach (var item in Model.CustomUsers)
+{
+
+    if (item.IsAdmin == false)
+    {
+        if (item.IsStudent == false)
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="Universite_Web" asp-controller="TeacherLogin" asp-action="about" asp-route-id="@item.Id">Elektron Jurnal</a>
+            </li>
+        }
+
+    }
+}

@@ -1,0 +1,53 @@
+﻿@model List<Blog>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<section id="blog">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12 title">
+                <h3>
+                    Xeberler
+                </h3>
+                <p>
+                    
+                </p>
+                <div class="dot1">
+                </div>
+                <div class="dot1">
+                </div>
+                <div class="dot1">
+                </div>
+            </div>
+            <div class="row" style="margin-left: 3px;">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6 cardd">
+                        <div class="card">
+                            <img src="~/UploadsBlog/@item.Image" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    @(item.Title.Length>35? item.Title.Substring(0,35)+"...":item.Title)
+
+                                </h5>
+                                <p class="card-text">
+                                    @(item.Content.Length>200? item.Content.Substring(0,200)+"...":item.Content)
+                                </p>
+                                <div class="date">
+                                    @item.Date.ToString("MMMM d")
+                                </div>
+                                <div class="link">
+                                    <a asp-action="BlogDetails" asp-controller="blog" asp-route-id="@item.Id">Etrafli</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                }
+            </div>
+
+        </div>
+    </div>
+</section>

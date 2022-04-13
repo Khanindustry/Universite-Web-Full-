@@ -1,0 +1,28 @@
+﻿@model VmTeacherLogin
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="container">
+    <div class="row justify-content-around">
+        <div class="col-md-8">
+            <form class="user" asp-controller="TeacherLogin" asp-action="login" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <input type="email" asp-for="@Model.Email" class="form-control form-control-user"
+                           placeholder="Enter Email Address...">
+                </div>
+                <div class="form-group">
+                    <input type="password" asp-for="@Model.Password" class="form-control form-control-user"
+                           placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-user btn-block">
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

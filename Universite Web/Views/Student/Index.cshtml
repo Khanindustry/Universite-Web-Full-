@@ -1,0 +1,58 @@
+﻿@model List<CustomUser>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="slider2">
+ 
+    <div class="col-lg-12 title">
+        <h3>
+            Telebeler
+        </h3>
+        <p>
+             
+        </p>
+        <div class="dot1">
+        </div>
+        <div class="dot1">
+        </div>
+        <div class="dot1">
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+
+            </div>
+            <div class=" student-1 owl-carousel owl-theme">
+                @foreach (var item in Model)
+                {
+                    if (item.IsAdmin == false)
+                    {
+                        if (item.IsStudent == true)
+                        {
+                            <div class="item">
+                                <div class="testimonials_single_in">
+                                    <p>
+                                        @item.Faculty
+                                    </p>
+                                    <h3>@item.Name @item.Surname</h3>
+                                    <h5>Student</h5>
+                                    <img src="~/Uploadss/@item.Image" class="img-fluid" alt="">
+                                </div>
+                            </div>
+                        }
+
+                    }
+
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    </div>
+</section>

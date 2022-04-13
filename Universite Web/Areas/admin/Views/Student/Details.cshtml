@@ -1,0 +1,51 @@
+﻿@model Universite_Web.Models.CustomUser
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Slider</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Surname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.Name
+                </td>
+                <td>
+                    @Model.Surname
+                </td>
+                <td>
+                    @Model.Email
+                </td>
+                <td>
+                    
+                    <img src="~/Uploadss/@Model.Image" alt="Alternate Text" style="max-width:250px; max-height:350px" />
+
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
